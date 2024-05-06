@@ -5,6 +5,8 @@ export default function Home() {
   if (error) return <div>failed to load</div>;
   if (isLoading) return <div>loading...</div>;
 
+  const { date, location, species, image } = data;
+
   console.log(data);
 
   return <>Hello</>;
