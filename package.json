@@ -1,0 +1,24 @@
+{
+  "name": "insta-fish",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "mongodb": "^6.5.0",
+    "mongoose": "^8.3.2",
+    "next": "14.2.2",
+    "react": "^18",
+    "react-dom": "^18",
+    "styled-components": "^6.1.8",
+    "swr": "^2.2.5"
+  },
+  "devDependencies": {
+    "eslint": "^8",
+    "eslint-config-next": "14.2.2"
+  }
+}
