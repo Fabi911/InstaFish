@@ -54,7 +54,7 @@ export default function App({ Component, pageProps }) {
           pauseOnFocusLoss
           draggable
           pauseOnHover
-          theme="light"
+          theme="dark"
         />
         <Component {...pageProps} onSubmit={handleAddCatch} />
       </SWRConfig>
