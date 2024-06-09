@@ -1,10 +1,13 @@
+import Link from "next/link";
 import styled from "styled-components";
 
 export default function Layout({ children }) {
   return (
     <>
       <Header>
-        <Title>Angel Kumpels 🎣</Title>
+        <LinkTitle href={"/"}>
+          <Title>Angel Kumpels 🎣</Title>
+        </LinkTitle>
       </Header>
       {children}
       <Footer>
@@ -28,6 +31,11 @@ const Header = styled.header`
 `;
 const Title = styled.h1`
   margin: 0;
+`;
+
+const LinkTitle = styled(Link)`
+  text-decoration: none;
+  color: white;
 `;
 
 const Footer = styled.footer`

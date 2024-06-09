@@ -1,10 +1,18 @@
-import useSWR from "swr";
-import CatchOverview from "@/components/catchList/CatchesOverview";
+import Link from "next/link";
+import styled from "styled-components";
 
 export default function Home() {
-  const { data, isLoading, error } = useSWR("/api/catches");
-  if (error) return <div>failed to load</div>;
-  if (isLoading) return <div>loading...</div>;
-
-  return <CatchOverview data={data} />;
+  return (
+    <ContentBox>
+      <Link href={"/CatchOverviewPage"}>Show myCatches</Link>
+    </ContentBox>
+  );
 }
+
+const ContentBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin: 3.5rem 0 2.5rem 0;
+`;
