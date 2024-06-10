@@ -18,7 +18,7 @@ export default async function handler(request, response) {
         const catchData = request.body;
         const catchItem = new Catch({
           ...catchData,
-          author: session.user.mail,
+          author: session.user.email,
         });
         await catchItem.save();
         return response.status(201).json({ status: "Catch added" });
