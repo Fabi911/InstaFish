@@ -26,7 +26,7 @@ export default function App({ Component, pageProps }) {
 
     if (response.ok) {
       await response.json();
-      router.push("/");
+      router.push("/CatchOverviewPage");
     } else {
       console.error(`Error: ${response.status}`);
     }

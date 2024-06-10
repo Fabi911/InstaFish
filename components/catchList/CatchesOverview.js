@@ -19,7 +19,7 @@ export default function CatchOverview({ data }) {
 
 const Container = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   align-items: center;
   gap: 10px;
 `;

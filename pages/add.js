@@ -1,6 +1,10 @@
 import styled from "styled-components";
+import { CldUploadWidget } from "next-cloudinary";
+import { useState } from "react";
+import Image from "next/image";
 
 export default function Add({ onSubmit }) {
+  const [imageUrl, setImageUrl] = useState("");
   async function handleSubmit(event) {
     event.preventDefault();
 
@@ -14,7 +18,7 @@ export default function Add({ onSubmit }) {
         species: data.species,
         size: data.size,
         weight: data.weight,
-        image: "",
+        image: imageUrl,
         favorite: false,
         notes: [""],
       });
@@ -25,7 +29,7 @@ export default function Add({ onSubmit }) {
   }
   return (
     <ContentBox>
-      <form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit}>
         <BoxInput>
           <label htmlFor="date">Date</label>
           <input id="date" type="date" required name="date" />
@@ -46,8 +50,45 @@ export default function Add({ onSubmit }) {
           <label htmlFor="weight">Weight</label>
           <input id="weight" type="number" name="weight" />
         </BoxInput>
-        <button type="submit">Add my catch</button>
-      </form>
+        <BoxInput>
+          <label htmlFor="image">Fangfoto hochladen</label>
+          <CldUploadWidget
+            uploadPreset="fish-img"
+            options={{
+              maxFileSize: 25485760,
+            }}
+            onUpload={(result) => {
+              setImageUrl(result.info.secure_url);
+            }}
+          >
+            {({ open }) => {
+              return (
+                <button
+                  style={{
+                    width: "50vw",
+                    borderRadius: "8px",
+                    boxShadow: "var(--box-shadow-default)",
+                    margin: "8px auto 5px auto",
+                  }}
+                  type="button"
+                  onClick={() => open()}
+                >
+                  <br />
+                  <Image
+                    src={"/img/uploadImg.png"}
+                    alt="upload"
+                    width={60}
+                    height={60}
+                  />
+                </button>
+              );
+            }}
+          </CldUploadWidget>
+          <p style={{ fontSize: "12px", textAlign: "center" }}>max. 10 MB</p>
+        </BoxInput>
+        <br />
+        <button type="submit">Fang eintragen</button>
+      </Form>
     </ContentBox>
   );
 }
@@ -58,10 +99,16 @@ const ContentBox = styled.div`
   align-items: center;
   justify-content: center;
   gap: 10px;
-  margin: 3.5rem 0 2.5rem 0;
 `;
 
 const BoxInput = styled.div`
   display: flex;
   flex-direction: column;
+`;
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 80vw;
 `;
