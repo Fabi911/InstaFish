@@ -4,6 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/router";
 import Layout from "@/components/Layout/Layout";
+import { SessionProvider } from "next-auth/react";
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();
@@ -57,7 +58,9 @@ export default function App({ Component, pageProps }) {
           pauseOnHover
           theme="dark"
         />
-        <Component {...pageProps} onSubmit={handleAddCatch} />
+        <SessionProvider session={pageProps.session}>
+          <Component {...pageProps} onSubmit={handleAddCatch} />
+        </SessionProvider>
       </SWRConfig>
     </Layout>
   );

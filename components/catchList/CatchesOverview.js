@@ -22,5 +22,4 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  margin: 3.5rem 0 2.5rem 0;
 `;

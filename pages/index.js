@@ -1,11 +1,19 @@
 import Link from "next/link";
 import styled from "styled-components";
+import { useSession } from "next-auth/react";
+import Login from "@/components/Login";
 
 export default function Home() {
+  const { data: session } = useSession();
   return (
-    <ContentBox>
-      <Link href={"/CatchOverviewPage"}>Show myCatches</Link>
-    </ContentBox>
+    <>
+      <Login />
+      {session && (
+        <ContentBox>
+          <Link href={"/CatchOverviewPage"}>Show myCatches</Link>
+        </ContentBox>
+      )}
+    </>
   );
 }
 
@@ -14,5 +22,4 @@ const ContentBox = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  margin: 3.5rem 0 2.5rem 0;
 `;
