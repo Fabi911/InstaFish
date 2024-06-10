@@ -11,6 +11,7 @@ const catchSchema = new Schema({
   image: { type: String },
   favorite: { type: Boolean },
   notes: { type: [String] },
+  author: { type: String },
 });
 
 const Catch = mongoose.models.Catch || mongoose.model("Catch", catchSchema);
