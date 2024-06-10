@@ -1,18 +1,31 @@
 import Link from "next/link";
 import styled from "styled-components";
-import { useSession } from "next-auth/react";
-import Login from "@/components/Login";
+import { useSession, signOut } from "next-auth/react";
+
+import { useState } from "react";
+import Modal from "@/components/Modal/Modal";
 
 export default function Home() {
+  const [login, setLogin] = useState(false);
+
   const { data: session } = useSession();
+
+  function handleLogin() {
+    setLogin(true);
+  }
+
+  console.log(login);
   return (
     <>
-      <Login />
+      {!session && <button onClick={handleLogin}>Anmelden</button>}
       {session && (
-        <ContentBox>
-          <Link href={"/CatchOverviewPage"}>Show myCatches</Link>
-        </ContentBox>
+        <div>
+          <ContentBox>
+            <Link href={"/CatchOverviewPage"}>Show myCatches</Link>
+          </ContentBox>
+        </div>
       )}
+      {login && <Modal setLogin={setLogin} />}
     </>
   );
 }

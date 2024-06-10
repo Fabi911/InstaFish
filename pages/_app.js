@@ -33,35 +33,36 @@ export default function App({ Component, pageProps }) {
   }
 
   return (
-    <Layout>
-      <GlobalStyle />
-      <SWRConfig
-        value={{
-          fetcher: async (...args) => {
-            const response = await fetch(...args);
-            if (!response.ok) {
-              throw new Error(`Request with ${JSON.stringify(args)} failed.`);
-            }
-            return await response.json();
-          },
-        }}
-      >
-        <ToastContainer
-          position="top-center"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="dark"
-        />
-        <SessionProvider session={pageProps.session}>
+    <SessionProvider session={pageProps.session}>
+      <Layout>
+        <GlobalStyle />
+        <SWRConfig
+          value={{
+            fetcher: async (...args) => {
+              const response = await fetch(...args);
+              if (!response.ok) {
+                throw new Error(`Request with ${JSON.stringify(args)} failed.`);
+              }
+              return await response.json();
+            },
+          }}
+        >
+          <ToastContainer
+            position="top-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="dark"
+          />
+
           <Component {...pageProps} onSubmit={handleAddCatch} />
-        </SessionProvider>
-      </SWRConfig>
-    </Layout>
+        </SWRConfig>
+      </Layout>
+    </SessionProvider>
   );
 }
