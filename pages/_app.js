@@ -5,6 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/router";
 import Layout from "@/components/Layout/Layout";
 import { SessionProvider } from "next-auth/react";
+import { Analytics } from "@vercel/analytics/react";
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();
