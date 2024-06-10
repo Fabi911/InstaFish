@@ -9,7 +9,7 @@ export default async function handler(request, response) {
 
   if (request.method === "GET") {
     if (session) {
-      const catches = await Catch.find({ author: session.user.mail });
+      const catches = await Catch.find({ author: session.user.email });
       return response.status(200).json(catches);
     }
   } else if (request.method === "POST") {
