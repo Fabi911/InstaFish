@@ -33,7 +33,7 @@ font-size: 20px;
   }
 
 body{
-  margin: 3.5rem 0 2.5rem 0;
+  margin: 3.5rem 0 3rem 0;
   background-color: var(--bg-color1);
   color: white;
   font-family: Arial, Helvetica, sans-serif;
