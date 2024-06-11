@@ -1,24 +1,36 @@
 import styled from "styled-components";
-import Image from "next/image";
+import { CldImage } from "next-cloudinary";
+import Modal from "../Modal/Modal";
+import { useState } from "react";
 
 export default function CatchCard({ image, date, location, species }) {
+  const [imageModal, setImageModal] = useState(false);
+
+  function onclickImageModal() {
+    setImageModal(true);
+  }
   return (
     <CardContainer>
-      <Image
-        src={image}
-        alt="catch Image"
-        height={800}
-        width={800}
-        style={{
-          width: "40%",
-          height: "auto",
-        }}
-      />
+      <PopUpButton type="button" onClick={() => onclickImageModal()}>
+        <CldImage
+          width="800"
+          height="800"
+          style={{
+            width: "100%",
+            height: "auto",
+          }}
+          src={image}
+          alt={species}
+        />
+      </PopUpButton>
       <CardInfo>
         <p>{species}</p>
         <p>{date}</p>
         <p>{location}</p>
       </CardInfo>
+      {imageModal && (
+        <Modal image={image} species={species} setImageModal={setImageModal} />
+      )}
     </CardContainer>
   );
 }
@@ -36,4 +48,12 @@ const CardContainer = styled.article`
 const CardInfo = styled.div`
   width: 60%;
   font-size: 0.8rem;
+`;
+
+const PopUpButton = styled.button`
+  background: none;
+  position: relative;
+  width: 35%;
+  border: none;
+  padding: 0;
 `;
