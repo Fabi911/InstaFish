@@ -3,7 +3,15 @@ import { CldImage } from "next-cloudinary";
 import Modal from "../Modal/Modal";
 import { useState } from "react";
 
-export default function CatchCard({ image, date, location, species }) {
+export default function CatchCard({
+  image,
+  date,
+  location,
+  species,
+  size,
+  weight,
+  methode,
+}) {
   const [imageModal, setImageModal] = useState(false);
 
   function onclickImageModal() {
@@ -24,9 +32,12 @@ export default function CatchCard({ image, date, location, species }) {
         />
       </PopUpButton>
       <CardInfo>
-        <p>{species}</p>
-        <p>{date}</p>
-        <p>{location}</p>
+        <p>Fischart: {species}</p>
+        <p> Fangdatum: {date}</p>
+        <p>Ort: {location}</p>
+        <p>Länge: {size} cm</p>
+        <p>Gewicht: {weight} kg</p>
+        <p>Angelart: {methode}</p>
       </CardInfo>
       {imageModal && (
         <Modal image={image} species={species} setImageModal={setImageModal} />

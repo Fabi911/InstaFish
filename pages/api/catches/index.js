@@ -20,6 +20,7 @@ export default async function handler(request, response) {
           ...catchData,
           author: session.user.email,
         });
+        console.log(catchData);
         await catchItem.save();
         return response.status(201).json({ status: "Catch added" });
       } else {

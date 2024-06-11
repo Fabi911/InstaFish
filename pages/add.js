@@ -11,7 +11,6 @@ export default function Add({ onSubmit }) {
     try {
       const formData = new FormData(event.target);
       const data = Object.fromEntries(formData);
-      console.log(data);
       await onSubmit({
         date: data.date,
         location: data.location,
@@ -21,6 +20,7 @@ export default function Add({ onSubmit }) {
         image: imageUrl,
         favorite: false,
         notes: [""],
+        methode: data.methode,
       });
       event.target.reset();
     } catch (error) {
@@ -31,24 +31,28 @@ export default function Add({ onSubmit }) {
     <ContentBox>
       <Form onSubmit={handleSubmit}>
         <BoxInput>
-          <label htmlFor="date">Date</label>
+          <label htmlFor="date">Fangdatum</label>
           <input id="date" type="date" required name="date" />
         </BoxInput>
         <BoxInput>
-          <label htmlFor="location">Location</label>
+          <label htmlFor="location">Fangort</label>
           <input id="location" type="text" required name="location" />
         </BoxInput>
         <BoxInput>
-          <label htmlFor="species">Species</label>
+          <label htmlFor="species">Fischart</label>
           <input id="species" type="text" required name="species" />
         </BoxInput>
         <BoxInput>
-          <label htmlFor="size">Size</label>
+          <label htmlFor="size">Größe in cm</label>
           <input id="size" type="number" name="size" />
         </BoxInput>
         <BoxInput>
-          <label htmlFor="weight">Weight</label>
-          <input id="weight" type="number" name="weight" />
+          <label htmlFor="weight">Gewicht in kg</label>
+          <input id="weight" type="number" name="weight" step=".001" />
+        </BoxInput>
+        <BoxInput>
+          <label htmlFor="methode">Angelart </label>
+          <input id="methode" type="text" name="methode" />
         </BoxInput>
         <BoxInput>
           <label htmlFor="image">Fangfoto hochladen</label>
