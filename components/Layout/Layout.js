@@ -1,6 +1,6 @@
 import Link from "next/link";
 import styled from "styled-components";
-import { useSession, signOut } from "next-auth/react";
+import { useSession, signOut, signIn } from "next-auth/react";
 
 export default function Layout({ children }) {
   const { data: session } = useSession();
@@ -13,6 +13,12 @@ export default function Layout({ children }) {
       </Header>
       {children}
       <Footer>
+        {!session && (
+          <BoxLogout>
+            Du bist nicht angemeldet. <br />
+            <button onClick={() => signIn()}>Anmelden</button>
+          </BoxLogout>
+        )}
         {session && (
           <BoxLogout>
             Angemeldet als {session.user.name}

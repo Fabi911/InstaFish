@@ -6,18 +6,10 @@ import { useState } from "react";
 import Modal from "@/components/Modal/Modal";
 
 export default function Home() {
-  const [login, setLogin] = useState(false);
-
   const { data: session } = useSession();
 
-  function handleLogin() {
-    setLogin(true);
-  }
-
-  console.log(login);
   return (
     <>
-      {!session && <button onClick={handleLogin}>Anmelden</button>}
       {session && (
         <div>
           <ContentBox>
@@ -25,7 +17,6 @@ export default function Home() {
           </ContentBox>
         </div>
       )}
-      {login && <Modal setLogin={setLogin} />}
     </>
   );
 }
