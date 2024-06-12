@@ -19,3 +19,12 @@ const catchSchema = new Schema({
 const Catch = mongoose.models.Catch || mongoose.model("Catch", catchSchema);
 
 export default Catch;
+
+// const usersSchema = new Schema({
+//   name: { type: String },
+//   email: { type: String },
+//   password: { type: String },
+// });
+
+// export const Users =
+//   mongoose.models.User || mongoose.model("Users", usersSchema);
