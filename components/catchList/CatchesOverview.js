@@ -1,8 +1,10 @@
 import CatchCard from "./CatchCard";
 import styled from "styled-components";
 
-export default function CatchOverview({ data }) {
-  console.log(data);
+export default function CatchOverview({ data, handleDeleteCatch, mutate }) {
+  {
+    console.log(data);
+  }
   return (
     <Container>
       {data.map((catchItem) => (
@@ -15,6 +17,10 @@ export default function CatchOverview({ data }) {
           size={catchItem.size}
           weight={catchItem.weight}
           methode={catchItem.methode}
+          onclickDeleteCatch={handleDeleteCatch}
+          id={catchItem._id}
+          mutate={mutate}
+          bait={catchItem.bait}
         />
       ))}
     </Container>

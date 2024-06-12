@@ -4,13 +4,13 @@ import styled, { createGlobalStyle } from "styled-components";
 export default createGlobalStyle`
 :root {
   // Main color scheme
-  --bg-color1:#202028;
+  --bg-color:#202028;
   --main-color:#1161ff;
-  --box-color:#404048;
-  --light-color: #808088;
+  --box-color:rgba(64,64,72,0.85);
+  --light-color: rgba(128,128,136,0.6);
   // box shadows
   --box-shadow: #000;
-  --box-shadow-default: 2px 10px 10px #000;
+  --box-shadow-default: 1px 5px 10px #000;
   // responsive design variables
 --card-mobile:  80vw;
 --card-tablet:  65vw;
@@ -33,13 +33,20 @@ font-size: 20px;
   }
 
 body{
-  margin: 3.5rem 0 3rem 0;
-  background-color: var(--bg-color1);
+  margin: 3.5rem 0 3.5rem 0;
+  /* background-color: var(--bg-color); */
+  background-image: url("/img/bg.jpg");
+    background-repeat: no-repeat;
+    background-size: 160%;
+    background-position-x: center;
+    background-position-y: center;
+    background-attachment:fixed;
   color: white;
   font-family: Arial, Helvetica, sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
+
 }
 
 

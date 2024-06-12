@@ -32,6 +32,26 @@ export default function App({ Component, pageProps }) {
     }
   }
 
+  async function handleDeleteCatch(id, mutate) {
+    const response = await toast.promise(
+      fetch(`/api/catches/${id}`, {
+        method: "DELETE",
+      }),
+      {
+        pending: "deleting is pending",
+        success: "Catch deleted! 👌",
+        error: "deleting rejected 🤯",
+      }
+    );
+
+    if (response.ok) {
+      router.push("/CatchOverviewPage");
+      mutate();
+    } else {
+      console.error(response.status);
+    }
+  }
+
   return (
     <SessionProvider session={pageProps.session}>
       <Layout>
@@ -60,7 +80,11 @@ export default function App({ Component, pageProps }) {
             theme="dark"
           />
 
-          <Component {...pageProps} onSubmit={handleAddCatch} />
+          <Component
+            {...pageProps}
+            onSubmit={handleAddCatch}
+            handleDeleteCatch={handleDeleteCatch}
+          />
         </SWRConfig>
       </Layout>
     </SessionProvider>
