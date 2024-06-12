@@ -6,6 +6,7 @@ export default function Document() {
     <Html lang="de">
       <Head />
       <body>
+        <div className="background"></div>
         <Main />
         <NextScript />
         <Analytics />

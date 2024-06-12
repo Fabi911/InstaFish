@@ -33,19 +33,33 @@ font-size: 20px;
   }
 
 body{
-  margin: 3.5rem 0 3.5rem 0;
-  /* background-color: var(--bg-color); */
-  background-image: url("/img/bg.jpg");
-    background-repeat: no-repeat;
-    background-size: 160%;
-    background-position-x: center;
-    background-position-y: center;
-    background-attachment:fixed;
+  padding: 3.5rem 0 4rem 0;
   color: white;
   font-family: Arial, Helvetica, sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 100vh;
+  /* overflow: hidden; */
+        }
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("/img/bg.jpg");
+  background-repeat: no-repeat;
+  background-size: 160%;
+  background-position: center;
+  z-index: -1; /* Ensure the background is behind all other content */
+  }
+.content {
+  position: relative;
+  z-index: 1;
+  height: 2000px; /* Just to create enough content to enable scrolling */
+  overflow-y: scroll;
+  }
 
 }
 
