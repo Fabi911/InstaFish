@@ -33,7 +33,7 @@ export default function Layout({ children }) {
 
 const Header = styled.header`
   width: 100vw;
-  background-color: var(--main-color);
+  background-color: var(--bg-color);
   height: 3rem;
   position: fixed;
   top: 0;
@@ -42,6 +42,7 @@ const Header = styled.header`
   justify-content: center;
   align-items: center;
   z-index: 1;
+  box-shadow: var(--box-shadow-default);
 `;
 const Title = styled.h1`
   margin: 0;
@@ -54,7 +55,7 @@ const LinkTitle = styled(Link)`
 
 const Footer = styled.footer`
   width: 100vw;
-  background-color: var(--main-color);
+  background-color: var(--bg-color);
   height: 3rem;
   position: fixed;
   bottom: 0;
@@ -63,6 +64,7 @@ const Footer = styled.footer`
   flex-direction: column;
   align-items: center;
   z-index: 1;
+  box-shadow: -2px -2px 10px #000;
 `;
 
 const BoxLogout = styled.div`

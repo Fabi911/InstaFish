@@ -21,6 +21,7 @@ export default function Add({ onSubmit }) {
         favorite: false,
         notes: [""],
         methode: data.methode,
+        bait: data.bait,
       });
       event.target.reset();
     } catch (error) {
@@ -55,6 +56,10 @@ export default function Add({ onSubmit }) {
           <input id="methode" type="text" name="methode" />
         </BoxInput>
         <BoxInput>
+          <label htmlFor="bait">Köder/Monatge </label>
+          <input id="bait" type="text" name="bait" />
+        </BoxInput>
+        <BoxInput>
           <label htmlFor="image">Fangfoto hochladen</label>
           <CldUploadWidget
             uploadPreset="fish-img"
@@ -69,10 +74,11 @@ export default function Add({ onSubmit }) {
               return (
                 <button
                   style={{
-                    width: "50vw",
+                    width: "30vw",
                     borderRadius: "8px",
                     boxShadow: "var(--box-shadow-default)",
                     margin: "8px auto 5px auto",
+                    height: "3rem",
                   }}
                   type="button"
                   onClick={() => open()}
@@ -81,16 +87,20 @@ export default function Add({ onSubmit }) {
                   <Image
                     src={"/img/uploadImg.png"}
                     alt="upload"
-                    width={60}
-                    height={60}
+                    width={40}
+                    height={40}
+                    style={{
+                      paddingBottom: "5px",
+                    }}
                   />
                 </button>
               );
             }}
           </CldUploadWidget>
-          <p style={{ fontSize: "12px", textAlign: "center" }}>max. 10 MB</p>
+          <p style={{ fontSize: "12px", textAlign: "center", margin: "0" }}>
+            max. 10 MB
+          </p>
         </BoxInput>
-        <br />
         <button type="submit">Fang eintragen</button>
       </Form>
     </ContentBox>
