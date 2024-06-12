@@ -113,6 +113,7 @@ const ContentBox = styled.div`
   align-items: center;
   justify-content: center;
   gap: 10px;
+  margin-bottom: 4rem;
 `;
 
 const BoxInput = styled.div`

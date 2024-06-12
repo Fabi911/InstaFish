@@ -55,6 +55,7 @@ export default function App({ Component, pageProps }) {
   return (
     <SessionProvider session={pageProps.session}>
       <Layout>
+        <div className="background"></div>
         <GlobalStyle />
         <SWRConfig
           value={{

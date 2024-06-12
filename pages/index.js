@@ -26,4 +26,5 @@ const ContentBox = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 10px;
+  margin-bottom: 4rem;
 `;

@@ -32,4 +32,5 @@ const Container = styled.div`
   flex-direction: column-reverse;
   align-items: center;
   gap: 10px;
+  margin-bottom: 4rem;
 `;
