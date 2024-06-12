@@ -1,9 +1,11 @@
 import Link from "next/link";
 import styled from "styled-components";
 import { useSession, signOut, signIn } from "next-auth/react";
+import { useRouter } from "next/router";
 
 export default function Layout({ children }) {
   const { data: session } = useSession();
+  const router = useRouter();
   return (
     <>
       <Header>
@@ -26,6 +28,7 @@ export default function Layout({ children }) {
             <button onClick={() => signOut()}>Abmelden</button>
           </BoxLogout>
         )}
+        <BackButton onClick={() => router.push("/")}>Zurück</BackButton>
       </Footer>
     </>
   );
@@ -72,4 +75,10 @@ const BoxLogout = styled.div`
   flex-direction: column;
   align-items: center;
   margin-top: 10px;
+`;
+
+const BackButton = styled.button`
+  position: absolute;
+  left: 10px;
+  bottom: 20px;
 `;

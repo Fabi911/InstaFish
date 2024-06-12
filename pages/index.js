@@ -1,19 +1,23 @@
-import Link from "next/link";
+import Router, { useRouter } from "next/router";
 import styled from "styled-components";
-import { useSession, signOut } from "next-auth/react";
-
-import { useState } from "react";
-import Modal from "@/components/Modal/Modal";
+import { useSession } from "next-auth/react";
 
 export default function Home() {
   const { data: session } = useSession();
+  const router = useRouter();
 
   return (
     <>
+      {!session && <p>Bitte unten Anmelden</p>}
       {session && (
         <div>
           <ContentBox>
-            <Link href={"/CatchOverviewPage"}>Show myCatches</Link>
+            <button onClick={() => Router.push("/CatchOverviewPage")}>
+              Mein Fangbuch
+            </button>
+            <button onClick={() => Router.push("/add")}>
+              neuen Fang eintragen
+            </button>
           </ContentBox>
         </div>
       )}
