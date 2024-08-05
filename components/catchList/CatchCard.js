@@ -4,19 +4,12 @@ import Modal from "../Modal/Modal";
 import {useState} from "react";
 
 export default function CatchCard({
-                                      image,
-                                      date,
-                                      location,
-                                      species,
-                                      size,
-                                      weight,
-                                      methode,
-                                      id,
-                                      bait,
+                                      data,
                                       onclickDeleteCatch,
                                       mutate,
                                   }) {
     const [imageModal, setImageModal] = useState(false);
+    const {bait, date, image, location, methode, size, species, weight} = data;
 
     function onclickImageModal() {
         setImageModal(true);

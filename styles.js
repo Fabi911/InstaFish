@@ -8,6 +8,7 @@ export default createGlobalStyle`
         --main-color: #1161ff;
         --box-color: rgba(64, 64, 72, 0.85);
         --light-color: rgba(128, 128, 136, 0.6);
+        --button-color: lightblue;
         // box shadows
         --box-shadow: #000;
         --box-shadow-default: 1px 5px 10px #000;
@@ -43,23 +44,5 @@ export default createGlobalStyle`
         margin: 4rem 0 0 0;
         background-color: dimgrey;
     }
-
-    .background {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image: url("/img/bg.jpg");
-        background-repeat: no-repeat;
-        background-size: 160%;
-        background-position: center;
-        z-index: -1;
-    }
-
-
-
-
-
 
 `;

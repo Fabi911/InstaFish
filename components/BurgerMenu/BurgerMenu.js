@@ -1,13 +1,16 @@
 import {useState} from "react";
 import Link from "next/link";
 import styled from "styled-components";
-import {useRouter} from "next/router";
 
 export default function BurgerMenu() {
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
+    };
+
+    const closeMenu = () => {
+        setIsOpen(false);
     };
 
     return (
@@ -18,13 +21,16 @@ export default function BurgerMenu() {
             {isOpen && (
                 <Menu>
                     <MenuItem>
-                        <LinkMenu href="/CatchOverviewPage">Fänge</LinkMenu>
+                        <LinkMenu href="/" onClick={closeMenu}>Startseite</LinkMenu>
                     </MenuItem>
                     <MenuItem>
-                        <LinkMenu href="/Calendar">Kalender</LinkMenu>
+                        <LinkMenu href="/CatchOverviewPage" onClick={closeMenu}>Fänge</LinkMenu>
                     </MenuItem>
                     <MenuItem>
-                        <LinkMenu href="/Profile">Profil</LinkMenu>
+                        <LinkMenu href="/Calendar" onClick={closeMenu}>Kalender</LinkMenu>
+                    </MenuItem>
+                    <MenuItem>
+                        <LinkMenu href="/Profile" onClick={closeMenu}>Profil</LinkMenu>
                     </MenuItem>
                 </Menu>
             )}

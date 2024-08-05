@@ -10,26 +10,24 @@ export default function Layout({children}) {
     return (
         <>
             <Header>
-                <BurgerMenu/>
-                <LinkTitle href={"/"}>
-                    <Title>Angel Kumpels 🎣</Title>
-                </LinkTitle>
-            </Header>
-            {children}
-            <Footer>
                 {!session && (
                     <BoxLogout>
-                        Du bist nicht angemeldet. <br/>
-                        <button onClick={() => signIn()}>Anmelden</button>
+                        <button onClick={() => signIn()}>📲</button>
                     </BoxLogout>
                 )}
                 {session && (
                     <BoxLogout>
-                        Angemeldet als {session.user.name}
-                        <br/>
-                        <button onClick={() => signOut()}>Abmelden</button>
+                        <button onClick={() => signOut()}>🚫</button>
                     </BoxLogout>
                 )}
+                <BurgerMenu/>
+                <LinkTitle href={"/"}>
+                    <Title>Fishing Journal 🎣</Title>
+                </LinkTitle>
+            </Header>
+            {children}
+            <Footer>
+
                 <BackButton onClick={() => router.push("/")}>Zurück</BackButton>
             </Footer>
         </>
@@ -74,10 +72,9 @@ const Footer = styled.footer`
 `;
 
 const BoxLogout = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 10px;
+    position: fixed;
+    top: 0.4rem;
+    left: 0.4rem;
 `;
 
 const BackButton = styled.button`
