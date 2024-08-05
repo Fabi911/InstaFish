@@ -6,7 +6,7 @@ import useSWR from "swr";
 
 export default function Home() {
     const {data: session} = useSession();
-    const router = useRouter();
+    const router = useRouter()
     const {data, isLoading, error, mutate} = useSWR(
         "/api/catches",
         {
@@ -14,31 +14,34 @@ export default function Home() {
         },
         {refreshInterval: 400}
     );
-    if (error) return <div>failed to load</div>;
-    if (isLoading) return <div>loading...</div>;
+    if (!session) {
+        return <p>Bitte anmelden</p>
+    } else {
 
-    const lastCatch = data[data.length - 1];
-    const {bait, date, image, location, methode, size, species, weight} = lastCatch;
+        if (error) return <div>failed to load</div>;
+        if (isLoading) return <div>loading...</div>;
+        const lastCatch = data[data.length - 1];
+        if (!lastCatch) {
+            return null
+        }
+        const {bait, date, image, location, methode, size, species, weight} = lastCatch;
 
-    return (
-        <>
-            {!session && <p>Bitte unten Anmelden</p>}
-            {session && (
-                <div>
-                    <h2>Willkommen {session.user.name}</h2>
-                    <ContentBox>
-                        <ButtonNewCatch onClick={() => Router.push("/add")}>
-                            neuen Fang eintragen
-                        </ButtonNewCatch>
-                    </ContentBox>
-                    <LastCatch>
-                        <H3LastCatch>Dein letzter Fang</H3LastCatch>
-                        <CatchCard data={lastCatch}/>
-                    </LastCatch>
-                </div>
-            )}
-        </>
-    );
+        return (
+            <div>
+                <h2>Willkommen {session.user.name}</h2>
+                <ContentBox>
+                    <ButtonNewCatch onClick={() => Router.push("/add")}>
+                        neuen Fang eintragen
+                    </ButtonNewCatch>
+                </ContentBox>
+                <LastCatch>
+                    <H3LastCatch>Dein letzter Fang</H3LastCatch>
+                    <CatchCard data={lastCatch}/>
+                </LastCatch>
+            </div>
+        )
+    }
+
 }
 
 const ContentBox = styled.div`

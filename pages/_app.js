@@ -1,5 +1,5 @@
 import GlobalStyle from "../styles";
-import {SWRConfig} from "swr";
+import useSWR, {SWRConfig} from "swr";
 import {ToastContainer, toast} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {useRouter} from "next/router";
@@ -8,6 +8,7 @@ import {SessionProvider} from "next-auth/react";
 
 export default function App({Component, pageProps}) {
     const router = useRouter();
+
 
     async function handleAddCatch(catchItem) {
         const response = await toast.promise(
