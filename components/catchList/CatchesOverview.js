@@ -8,6 +8,8 @@ export default function CatchOverview({data, handleDeleteCatch, mutate}) {
                 <CatchCard
                     key={catchItem.id}
                     data={catchItem}
+                    onclickDeleteCatch={handleDeleteCatch}
+                    mutate={mutate}
                 />
             ))}
         </Container>

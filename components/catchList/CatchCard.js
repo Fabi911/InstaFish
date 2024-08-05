@@ -9,7 +9,7 @@ export default function CatchCard({
                                       mutate,
                                   }) {
     const [imageModal, setImageModal] = useState(false);
-    const {bait, date, image, location, methode, size, species, weight} = data;
+    const {bait, date, image, location, methode, size, species, weight, _id} = data;
 
     function onclickImageModal() {
         setImageModal(true);
@@ -43,7 +43,7 @@ export default function CatchCard({
             )}
             <DeleteButton
                 type="button"
-                onClick={() => onclickDeleteCatch(id, mutate)}
+                onClick={() => onclickDeleteCatch(_id, mutate)}
             >
                 🚫
             </DeleteButton>
