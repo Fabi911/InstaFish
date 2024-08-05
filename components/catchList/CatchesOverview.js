@@ -6,6 +6,7 @@ export default function CatchOverview({data, handleDeleteCatch, mutate}) {
         <Container>
             {data.map((catchItem) => (
                 <CatchCard
+                    key={catchItem.id}
                     data={catchItem}
                 />
             ))}
