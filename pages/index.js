@@ -27,7 +27,7 @@ export default function Home({handleDeleteCatch}) {
 
         return (
             <ContainerMain>
-                <h2>Willkommen {session.user.name}</h2>
+                <H2>Willkommen {session.user.name}</H2>
                 <ContentBox>
                     <ButtonNewCatch onClick={() => Router.push("/add")}>
                         neuen Fang eintragen
@@ -64,6 +64,10 @@ const LastCatch = styled.div`
     gap: 0;
     margin-bottom: 3rem;
 `
+const H2 = styled.h2`
+    font-size: 1.4rem;
+`
+
 
 const H3LastCatch = styled.h3`
     margin-bottom: 0.2rem;
