@@ -39,9 +39,9 @@ export default function BurgerMenu() {
 }
 
 const MenuButton = styled.button`
-    position: fixed;
+    /*position: fixed;
     top: 4px;
-    right: 9px;
+    right: 9px;*/
     background: none;
     border: none;
     color: white;
