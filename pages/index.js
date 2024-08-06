@@ -4,7 +4,7 @@ import {useSession} from "next-auth/react";
 import CatchCard from "@/components/catchList/CatchCard";
 import useSWR from "swr";
 
-export default function Home() {
+export default function Home({handleDeleteCatch}) {
     const {data: session} = useSession();
     const router = useRouter()
     const {data, isLoading, error, mutate} = useSWR(
@@ -24,10 +24,9 @@ export default function Home() {
         if (!lastCatch) {
             return null
         }
-        const {bait, date, image, location, methode, size, species, weight} = lastCatch;
 
         return (
-            <div>
+            <ContainerMain>
                 <h2>Willkommen {session.user.name}</h2>
                 <ContentBox>
                     <ButtonNewCatch onClick={() => Router.push("/add")}>
@@ -36,13 +35,19 @@ export default function Home() {
                 </ContentBox>
                 <LastCatch>
                     <H3LastCatch>Dein letzter Fang</H3LastCatch>
-                    <CatchCard data={lastCatch}/>
+                    <CatchCard data={lastCatch} onclickDeleteCatch={handleDeleteCatch} mutate={mutate}/>
                 </LastCatch>
-            </div>
+            </ContainerMain>
         )
     }
 
 }
+
+const ContainerMain = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`
 
 const ContentBox = styled.div`
     display: flex;
