@@ -3,6 +3,7 @@ import {CldImage} from "next-cloudinary";
 import Modal from "../Modal/Modal";
 import {useState} from "react";
 
+
 export default function CatchCard({
                                       data,
                                       onclickDeleteCatch,
@@ -10,6 +11,7 @@ export default function CatchCard({
                                   }) {
     const [imageModal, setImageModal] = useState(false);
     const {bait, date, image, location, methode, size, species, weight, _id} = data;
+    const DefaultImage = "https://res.cloudinary.com/ddqqfiwvi/image/upload/v1723015539/fish-img/fish_hlfqlq.jpg";
 
     function onclickImageModal() {
         setImageModal(true);
@@ -25,7 +27,7 @@ export default function CatchCard({
                         width: "100%",
                         height: "auto",
                     }}
-                    src={image}
+                    src={image || DefaultImage}
                     alt={species}
                 />
             </PopUpButton>

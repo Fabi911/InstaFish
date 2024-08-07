@@ -4,10 +4,12 @@ import Image from "next/image";
 import styled from "styled-components";
 import FishingGracePeriod from "@/components/FishingGracePeriod"; // Adjust the import path as needed
 
+
 export default function CatchForm({onSubmit}) {
     const [imageUrl, setImageUrl] = useState("");
     const [selectedFish, setSelectedFish] = useState('Hecht');
     const state = 'baden-wuerttemberg'; // Or dynamically set this value
+    
 
     async function handleSubmit(event) {
         event.preventDefault();
@@ -37,11 +39,11 @@ export default function CatchForm({onSubmit}) {
         <ContentBox>
             <Form onSubmit={handleSubmit}>
                 <BoxInput>
-                    <label htmlFor="date">Fangdatum</label>
+                    <label htmlFor="date">Fangdatum*</label>
                     <input id="date" type="date" required name="date"/>
                 </BoxInput>
                 <BoxInput>
-                    <label htmlFor="location">Fangort</label>
+                    <label htmlFor="location">Fangort*</label>
                     <input id="location" type="text" required name="location"/>
                 </BoxInput>
                 <FishingGracePeriod
@@ -50,12 +52,12 @@ export default function CatchForm({onSubmit}) {
                     onFishChange={setSelectedFish}
                 />
                 <BoxInput>
-                    <label htmlFor="size">Größe in cm</label>
-                    <input id="size" type="number" name="size"/>
+                    <label htmlFor="size">Größe in cm*</label>
+                    <input id="size" type="number" required name="size"/>
                 </BoxInput>
                 <BoxInput>
-                    <label htmlFor="weight">Gewicht in kg</label>
-                    <input id="weight" type="number" name="weight" step=".001"/>
+                    <label htmlFor="weight">Gewicht in kg*</label>
+                    <input id="weight" type="number" required name="weight" step=".001"/>
                 </BoxInput>
                 <BoxInput>
                     <label htmlFor="methode">Angelart</label>
@@ -70,7 +72,7 @@ export default function CatchForm({onSubmit}) {
                     <CldUploadWidget
                         uploadPreset="fish-img"
                         options={{maxFileSize: 25485760}}
-                        onUpload={(result) => setImageUrl(result.info.secure_url)}
+                        onUpload={(result) => setImageUrl(result.info.secure_url ? result.info.secure_url : "")}
                     >
                         {({open}) => (
                             <button

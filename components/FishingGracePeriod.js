@@ -27,7 +27,7 @@ const FishingGracePeriod = ({state, selectedFish, onFishChange}) => {
 
     return (
         <BoxInput>
-            <label htmlFor="species">Fischart</label>
+            <label htmlFor="species">Fischart*</label>
             <select id="species" required name="species" value={selectedFish} onChange={handleChange}>
                 <option value="Hecht">Hecht</option>
                 <option value="Zander">Zander</option>
