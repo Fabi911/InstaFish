@@ -3,43 +3,53 @@ import styled from "styled-components";
 import {useSession} from "next-auth/react";
 import CatchCard from "@/components/catchList/CatchCard";
 import useSWR from "swr";
+import {useEffect, useState} from "react";
+import axios from "axios";
 
 export default function Home({handleDeleteCatch}) {
     const {data: session} = useSession();
     const router = useRouter()
-    const {data, isLoading, error, mutate} = useSWR(
-        "/api/catches",
-        {
-            fallbackData: [],
-        },
-        {refreshInterval: 400}
-    );
-    if (!session) {
-        return <p>Bitte anmelden</p>
-    } else {
+    const [catchDataHome, setCatchDataHome] = useState([])
 
-        if (error) return <div>failed to load</div>;
-        if (isLoading) return <div>loading...</div>;
-        const lastCatch = data[data.length - 1];
-        if (!lastCatch) {
-            return null
-        }
-
-        return (
-            <ContainerMain>
-                <H2>Willkommen {session.user.name}</H2>
-                <ContentBox>
-                    <ButtonNewCatch onClick={() => Router.push("/add")}>
-                        neuen Fang eintragen
-                    </ButtonNewCatch>
-                </ContentBox>
-                <LastCatch>
-                    <H3LastCatch>Dein letzter Fang</H3LastCatch>
-                    <CatchCard data={lastCatch} onclickDeleteCatch={handleDeleteCatch} mutate={mutate}/>
-                </LastCatch>
-            </ContainerMain>
-        )
+    const fetchDataHome = () => {
+        axios.get('/api/catch')
+            .then((response) => {
+                setCatchDataHome(response.data)
+            })
+            .catch((error) => {
+                console.log(error)
+            })
     }
+
+    useEffect(() => {
+        fetchDataHome()
+    }, [])
+
+    /*if (!session) {
+        return <p>Bitte anmelden</p>*/
+    /*} else {*/
+
+
+    const lastCatch = catchDataHome[catchDataHome.length - 1];
+    if (!lastCatch) {
+        return null
+    }
+
+    return (
+        <ContainerMain>
+            {/* <H2>Willkommen {session.user.name}</H2>*/}
+            <ContentBox>
+                <ButtonNewCatch onClick={() => Router.push("/add")}>
+                    neuen Fang eintragen
+                </ButtonNewCatch>
+            </ContentBox>
+            <LastCatch>
+                <H3LastCatch>Dein letzter Fang</H3LastCatch>
+                <CatchCard data={lastCatch} onclickDeleteCatch={handleDeleteCatch}/>
+            </LastCatch>
+        </ContainerMain>
+    )
+    /*}*/
 
 }
 
