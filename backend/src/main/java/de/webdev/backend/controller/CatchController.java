@@ -3,8 +3,7 @@ package de.webdev.backend.controller;
 import de.webdev.backend.model.Catch;
 import de.webdev.backend.service.CatchService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -15,9 +14,13 @@ public class CatchController {
 
     private final CatchService catchService;
 
-    @RequestMapping()
+    @GetMapping()
     public List<Catch> getAllCatches() {
         return catchService.getAllCatches();
     }
 
+    @PostMapping
+    public Catch saveCatch(@RequestBody Catch newCatch) {
+        return catchService.saveCatch(newCatch);
+    }
 }

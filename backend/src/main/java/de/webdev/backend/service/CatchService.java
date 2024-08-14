@@ -17,4 +17,8 @@ public class CatchService {
         return catchRepository.findAll();
     }
 
+    public Catch saveCatch(Catch newCatch) {
+        return catchRepository.save(newCatch);
+    }
+
 }
