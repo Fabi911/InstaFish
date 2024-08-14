@@ -17,7 +17,7 @@
     "cloudinary": "^2.2.0",
     "mongodb": "^6.7.0",
     "mongoose": "^8.3.2",
-    "next": "13.4.8",
+    "next": "^14.2.5",
     "next-auth": "^4.24.7",
     "next-cloudinary": "^6.6.2",
     "react": "^18",
@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "eslint": "^8",
-    "eslint-config-next": "13.4.8"
+    "eslint-config-next": "14.2.5"
   },
   "description": "Next.js (incl. Styled Components and Jest)",
   "nf": {
