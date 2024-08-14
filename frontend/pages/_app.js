@@ -1,5 +1,4 @@
 import GlobalStyle from "../styles";
-import useSWR, {SWRConfig} from "swr";
 import {ToastContainer, toast} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {useRouter} from "next/router";
@@ -12,7 +11,7 @@ export default function App({Component, pageProps}) {
 
     async function handleAddCatch(catchItem) {
         const response = await toast.promise(
-            fetch("/api/catches", {
+            fetch("catch", {
                 method: "POST",
                 body: JSON.stringify(catchItem),
                 headers: {
@@ -58,36 +57,26 @@ export default function App({Component, pageProps}) {
         <SessionProvider session={pageProps.session}>
             <Layout>
                 <GlobalStyle/>
-                <SWRConfig
-                    value={{
-                        fetcher: async (...args) => {
-                            const response = await fetch(...args);
-                            if (!response.ok) {
-                                throw new Error(`Request with ${JSON.stringify(args)} failed.`);
-                            }
-                            return await response.json();
-                        },
-                    }}
-                >
-                    <ToastContainer
-                        position="top-center"
-                        autoClose={5000}
-                        hideProgressBar={false}
-                        newestOnTop
-                        closeOnClick
-                        rtl={false}
-                        pauseOnFocusLoss
-                        draggable
-                        pauseOnHover
-                        theme="dark"
-                    />
 
-                    <Component
-                        {...pageProps}
-                        onSubmit={handleAddCatch}
-                        handleDeleteCatch={handleDeleteCatch}
-                    />
-                </SWRConfig>
+                <ToastContainer
+                    position="top-center"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="dark"
+                />
+
+                <Component
+                    {...pageProps}
+                    onSubmit={handleAddCatch}
+                    handleDeleteCatch={handleDeleteCatch}
+                />
+
             </Layout>
         </SessionProvider>
     );

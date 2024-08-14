@@ -1,20 +1,26 @@
-import useSWR from "swr";
 import CatchOverview from "@/components/catchList/CatchesOverview";
 import Link from "next/link";
 import styled from "styled-components";
 import AddButton from "@/public/img/add.svg";
 import Image from "next/image";
+import {useEffect, useState} from "react";
+import axios from "axios";
 
 export default function CatchOverviewPage({handleDeleteCatch}) {
-    const {data, isLoading, error, mutate} = useSWR(
-        "/api/catches",
-        {
-            fallbackData: [],
-        },
-        {refreshInterval: 400}
-    );
-    if (error) return <div>failed to load</div>;
-    if (isLoading) return <div>loading...</div>;
+    const [data, setData] = useState([]);
+
+    function fetchCatch() {
+        axios.get("/api/catch")
+            .then(response => {
+                setData(response.data);
+                console.log("data: ", response.data);
+            })
+            .catch(error => console.log("Error fetching data: ", error.message));
+    }
+
+    useEffect(() => {
+        fetchCatch();
+    }, []);
 
     return (
         <ContainerCatchView>
@@ -22,7 +28,6 @@ export default function CatchOverviewPage({handleDeleteCatch}) {
             <CatchOverview
                 data={data}
                 handleDeleteCatch={handleDeleteCatch}
-                mutate={mutate}
             />
             <LinkAdd href={"/add"}><Image src={AddButton} alt="add-button" height={50} width={50}/></LinkAdd>
         </ContainerCatchView>
@@ -44,5 +49,5 @@ const ContainerCatchView = styled.div`
             display: flex;
             flex-direction: column;
             align-items: center;
-        `
+    `
 ;
