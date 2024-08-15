@@ -23,4 +23,5 @@ public class CatchController {
     public Catch saveCatch(@RequestBody Catch newCatch) {
         return catchService.saveCatch(newCatch);
     }
+
 }
