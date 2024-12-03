@@ -3,13 +3,14 @@ import {CldUploadWidget} from "next-cloudinary";
 import Image from "next/image";
 import styled from "styled-components";
 import FishingGracePeriod from "@/components/FishingGracePeriod"; // Adjust the import path as needed
+import {v4 as uuid} from "uuid";
 
 
 export default function CatchForm({onSubmit}) {
     const [imageUrl, setImageUrl] = useState("");
     const [selectedFish, setSelectedFish] = useState('Hecht');
     const state = 'baden-wuerttemberg'; // Or dynamically set this value
-    
+
 
     async function handleSubmit(event) {
         event.preventDefault();
@@ -21,13 +22,15 @@ export default function CatchForm({onSubmit}) {
                 date: data.date,
                 location: data.location,
                 species: data.species,
-                size: data.size,
-                weight: data.weight,
+                size: Number(data.size),
+                weight: Number(data.weight),
                 image: imageUrl,
                 favorite: false,
                 notes: [""],
                 methode: data.methode,
                 bait: data.bait,
+                id: uuid(),
+                author: "author", // Or dynamically set this value
             });
             event.target.reset();
         } catch (error) {
