@@ -82,6 +82,8 @@
                     <execution>
                         <goals>
                             <goal>prepare-agent</goal>
+
+
                         </goals>
                     </execution>
                     <execution>
@@ -94,6 +96,7 @@
                 </executions>
             </plugin>
         </plugins>
+        <finalName>app</finalName>
     </build>
 
 </project>
